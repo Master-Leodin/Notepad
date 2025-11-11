@@ -192,6 +192,13 @@ class MainActivity : AppCompatActivity() {
     private fun triggerUpdateInstallation(apkFile: File) {
         try {
             Log.d(TAG, "Triggering installation for: ${apkFile.absolutePath}")
+
+            // Verificar se o arquivo existe e tem tamanho adequado
+            if (!apkFile.exists() || apkFile.length() == 0L) {
+                Toast.makeText(this, "Arquivo de atualização corrompido", Toast.LENGTH_SHORT).show()
+                return
+            }
+
             val apkUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 FileProvider.getUriForFile(this, "${packageName}.fileprovider", apkFile)
             } else {
@@ -208,13 +215,20 @@ class MainActivity : AppCompatActivity() {
             updateDialog?.dismiss()
             updateDialog = null
             Log.d(TAG, "Installation intent started successfully")
+
         } catch (e: Exception) {
             Log.e(TAG, "Installation error: ${e.message}", e)
-            Toast.makeText(
-                this,
-                "Erro na instalação: ${e.message}",
-                Toast.LENGTH_SHORT
-            ).show()
+
+            // Mensagem mais específica
+            val errorMsg = when {
+                e.message?.contains("conflict") == true ->
+                    "Conflito de pacote. Desinstale a versão atual primeiro."
+                e.message?.contains("no app") == true ->
+                    "Nenhum app pode abrir o arquivo. Ative 'Fontes desconhecidas'."
+                else -> "Erro na instalação: ${e.message}"
+            }
+
+            Toast.makeText(this, errorMsg, Toast.LENGTH_LONG).show()
         }
     }
 
