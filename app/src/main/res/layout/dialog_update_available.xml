@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/gray_white">
+
+    <ImageView
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_launcher_round"
+        android:contentDescription="Ícone do App" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:text="Nova Versão Disponível!"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:textColor="#3F51B5"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/releaseNotesTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+        android:textColor="@color/black"
+        tools:text="Release notes da nova versão aparecerão aqui." />
+
+    <ProgressBar
+        android:id="@+id/updateProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:visibility="gone"
+        android:progressTint="#3F51B5" />
+
+    <LinearLayout
+        android:id="@+id/buttonsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/laterButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:layout_weight="1"
+            android:backgroundTint="#3F51B5"
+            android:textColor="#FFEB3B"
+            android:text="Agora não" />
+
+        <Button
+            android:id="@+id/updateButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_weight="1"
+            android:backgroundTint="#3F51B5"
+            android:textColor="#FFEB3B"
+            android:text="Atualizar" />
+
+    </LinearLayout>
+
+</LinearLayout>

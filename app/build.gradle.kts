@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0"
 }
 
 android {
@@ -15,8 +16,8 @@ android {
         applicationId = "com.btcemais.notepad"
         minSdk = 28
         targetSdk = 34
-        versionCode = 2
-        versionName = "0.2"
+        versionCode = 3
+        versionName = "0.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -52,5 +53,12 @@ dependencies {
 
     implementation ("androidx.viewpager2:viewpager2:1.0.0")
     implementation ("com.google.android.material:material:1.6.0")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
+
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
 
 }
