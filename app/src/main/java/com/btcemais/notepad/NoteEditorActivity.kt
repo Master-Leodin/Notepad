@@ -25,10 +25,10 @@ class NoteEditorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_note_editor)
 
-        println("DEBUG: NoteEditorActivity iniciada")
+        println("DEBUG: NoteEditorActivity started")
         println("DEBUG: Intent extras: ${intent.extras}")
 
-        // Configura o comportamento do botão de voltar do sistema (nova abordagem)
+        // Configure system back button behavior (new approach)
         setupBackPressedCallback()
 
         initViews()
@@ -37,7 +37,7 @@ class NoteEditorActivity : AppCompatActivity() {
     }
 
     private fun setupBackPressedCallback() {
-        // Esta é a nova forma recomendada de lidar com o botão voltar
+        // This is the new recommended way to handle the back button
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
                 checkForUnsavedChanges()
@@ -85,40 +85,40 @@ class NoteEditorActivity : AppCompatActivity() {
         println("DEBUG: existingNoteTitle = $existingNoteTitle")
 
         if (existingNoteTitle != null) {
-            // Estamos editando uma nota existente
-            println("DEBUG: Editando nota existente: $existingNoteTitle")
+            // We are editing an existing note
+            println("DEBUG: Editing existing note: $existingNoteTitle")
             etNoteName.setText(existingNoteTitle)
 
             val file = File(filesDir, "$existingNoteTitle.txt")
-            println("DEBUG: Caminho do arquivo: ${file.absolutePath}")
-            println("DEBUG: Arquivo existe: ${file.exists()}")
+            println("DEBUG: File path: ${file.absolutePath}")
+            println("DEBUG: File exists: ${file.exists()}")
 
             if (file.exists()) {
                 try {
                     val content = file.readText()
                     etNoteContent.setText(content)
-                    // Guarda o conteúdo original para comparar depois
+                    // Store original content for later comparison
                     originalTitle = existingNoteTitle!!
                     originalContent = content
-                    println("DEBUG: Conteúdo carregado com sucesso. Tamanho: ${content.length} caracteres")
+                    println("DEBUG: Content loaded successfully. Size: ${content.length} characters")
                 } catch (e: Exception) {
-                    Toast.makeText(this, "Erro ao carregar a nota", Toast.LENGTH_SHORT).show()
-                    println("DEBUG: Erro ao carregar conteúdo: ${e.message}")
+                    Toast.makeText(this, R.string.error_loading_note, Toast.LENGTH_SHORT).show()
+                    println("DEBUG: Error loading content: ${e.message}")
                     e.printStackTrace()
                 }
             } else {
-                Toast.makeText(this, "Arquivo da nota não encontrado", Toast.LENGTH_SHORT).show()
-                println("DEBUG: Arquivo não existe")
+                Toast.makeText(this, R.string.note_file_not_found, Toast.LENGTH_SHORT).show()
+                println("DEBUG: File doesn't exist")
             }
         } else {
-            // Estamos criando uma nova nota
-            println("DEBUG: Criando nova nota - nenhum título recebido")
+            // We are creating a new note
+            println("DEBUG: Creating new note - no title received")
             etNoteName.setText("")
             etNoteContent.setText("")
-            // Para nova nota, originalTitle e originalContent são vazios
+            // For new note, originalTitle and originalContent are empty
             originalTitle = ""
             originalContent = ""
-            // Nova nota começa com changes = true pois precisa ser salva
+            // New note starts with changes = true because it needs to be saved
             hasChanges = true
         }
     }
@@ -133,15 +133,15 @@ class NoteEditorActivity : AppCompatActivity() {
 
     private fun showUnsavedChangesDialog() {
         AlertDialog.Builder(this)
-            .setTitle("Nota não salva")
-            .setMessage("Você tem alterações não salvas. O que deseja fazer?")
-            .setPositiveButton("Salvar e sair") { _, _ ->
+            .setTitle(R.string.unsaved_note)
+            .setMessage(R.string.unsaved_changes_message)
+            .setPositiveButton(R.string.save_and_exit) { _, _ ->
                 saveNoteAndExit()
             }
-            .setNegativeButton("Sair sem salvar") { _, _ ->
+            .setNegativeButton(R.string.exit_without_saving) { _, _ ->
                 finish()
             }
-            .setNeutralButton("Cancelar", null)
+            .setNeutralButton(R.string.cancel, null)
             .show()
     }
 
@@ -150,32 +150,32 @@ class NoteEditorActivity : AppCompatActivity() {
         val content = etNoteContent.text.toString()
 
         if (noteTitle.isEmpty()) {
-            Toast.makeText(this, "Digite um nome para a nota antes de salvar", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.enter_note_name, Toast.LENGTH_SHORT).show()
             return
         }
 
         try {
-            // Se estiver editando uma nota existente com título diferente, deleta a antiga
+            // If editing an existing note with different title, delete the old one
             existingNoteTitle?.let { oldTitle ->
                 if (oldTitle != noteTitle) {
                     val oldFile = File(filesDir, "$oldTitle.txt")
                     if (oldFile.exists()) {
                         oldFile.delete()
-                        println("DEBUG: Arquivo antigo deletado: $oldTitle.txt")
+                        println("DEBUG: Old file deleted: $oldTitle.txt")
                     }
                 }
             }
 
-            // Salva o arquivo com extensão .txt
+            // Save file with .txt extension
             val file = File(filesDir, "$noteTitle.txt")
             file.writeText(content)
 
-            Toast.makeText(this, "Nota salva com sucesso!", Toast.LENGTH_SHORT).show()
-            println("DEBUG: Nota salva: $noteTitle.txt")
+            Toast.makeText(this, R.string.note_saved_successfully, Toast.LENGTH_SHORT).show()
+            println("DEBUG: Note saved: $noteTitle.txt")
             finish()
         } catch (e: Exception) {
-            Toast.makeText(this, "Erro ao salvar: ${e.message}", Toast.LENGTH_SHORT).show()
-            println("DEBUG: Erro ao salvar: ${e.message}")
+            Toast.makeText(this, getString(R.string.error_saving, e.message), Toast.LENGTH_SHORT).show()
+            println("DEBUG: Error saving: ${e.message}")
             e.printStackTrace()
         }
     }
@@ -185,36 +185,36 @@ class NoteEditorActivity : AppCompatActivity() {
         val content = etNoteContent.text.toString()
 
         if (noteTitle.isEmpty()) {
-            Toast.makeText(this, "Digite um nome para a nota", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, R.string.enter_note_name, Toast.LENGTH_SHORT).show()
             return
         }
 
         try {
-            // Se estiver editando uma nota existente com título diferente, deleta a antiga
+            // If editing an existing note with different title, delete the old one
             existingNoteTitle?.let { oldTitle ->
                 if (oldTitle != noteTitle) {
                     val oldFile = File(filesDir, "$oldTitle.txt")
                     if (oldFile.exists()) {
                         oldFile.delete()
-                        println("DEBUG: Arquivo antigo deletado: $oldTitle.txt")
+                        println("DEBUG: Old file deleted: $oldTitle.txt")
                     }
                 }
             }
 
-            // Salva o arquivo com extensão .txt
+            // Save file with .txt extension
             val file = File(filesDir, "$noteTitle.txt")
             file.writeText(content)
 
-            // Atualiza os originais para refletir o estado salvo
+            // Update originals to reflect saved state
             originalTitle = noteTitle
             originalContent = content
             hasChanges = false
 
-            Toast.makeText(this, "Nota salva com sucesso!", Toast.LENGTH_SHORT).show()
-            println("DEBUG: Nota salva: $noteTitle.txt")
+            Toast.makeText(this, R.string.note_saved_successfully, Toast.LENGTH_SHORT).show()
+            println("DEBUG: Note saved: $noteTitle.txt")
         } catch (e: Exception) {
-            Toast.makeText(this, "Erro ao salvar: ${e.message}", Toast.LENGTH_SHORT).show()
-            println("DEBUG: Erro ao salvar: ${e.message}")
+            Toast.makeText(this, getString(R.string.error_saving, e.message), Toast.LENGTH_SHORT).show()
+            println("DEBUG: Error saving: ${e.message}")
             e.printStackTrace()
         }
     }

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Cabeçalho do App -->
+        <!-- App Header -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,7 +31,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Notepad"
+                    android:text="@string/app_name"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textStyle="bold" />
 
@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Versão 0.2 beta fracassado"
+                    android:text="@string/app_version"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
                 <TextView
@@ -49,17 +49,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:gravity="center"
-                    android:text="Bloco de notas simples e eficiente"
+                    android:text="@string/app_description"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Seção de Doações -->
+        <!-- Donations Section -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Apoie o Desenvolvimento"
+            android:text="@string/support_development"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
             android:textStyle="bold" />
 
@@ -68,10 +68,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:layout_marginBottom="16dp"
-            android:text="Se este app te ajudou, considere fazer uma doação"
+            android:text="@string/consider_donation"
             android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
-        <!-- PayPal e PIX (Mesma caixa) -->
+        <!-- PayPal and PIX (Same box) -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="PayPal &amp; PIX"
+                    android:text="@string/paypal_and_pix"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold" />
 
@@ -97,7 +97,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Email: leonardo132@gmail.com"
+                    android:text="@string/paypal_pix_email"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
                 <com.google.android.material.button.MaterialButton
@@ -107,7 +107,7 @@
                     android:layout_marginTop="8dp"
                     android:backgroundTint="#3F51B5"
                     android:textColor="#FFEB3B"
-                    android:text="Copiar Email"
+                    android:text="@string/copy_email"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
             </LinearLayout>
@@ -131,7 +131,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Wise"
+                    android:text="@string/wise"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold" />
 
@@ -139,7 +139,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="ID: leonardot1427"
+                    android:text="@string/wise_id"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
                 <LinearLayout
@@ -156,7 +156,7 @@
                         android:layout_weight="1"
                         android:backgroundTint="#3F51B5"
                         android:textColor="#FFEB3B"
-                        android:text="Abrir Wise"
+                        android:text="@string/open_wise"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
                     <com.google.android.material.button.MaterialButton
@@ -168,7 +168,7 @@
                         android:layout_weight="1"
                         android:backgroundTint="#3F51B5"
                         android:textColor="#FFEB3B"
-                        android:text="Copiar ID"
+                        android:text="@string/copy_wise_id"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
                 </LinearLayout>
@@ -194,7 +194,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Lightning Network"
+                    android:text="@string/lightning_network"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold" />
 
@@ -202,7 +202,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="mightynepal82@walletofsatoshi.com"
+                    android:text="@string/lightning_address"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
                 <com.google.android.material.button.MaterialButton
@@ -212,7 +212,7 @@
                     android:layout_marginTop="8dp"
                     android:backgroundTint="#3F51B5"
                     android:textColor="#FFEB3B"
-                    android:text="Copiar Endereço Lightning"
+                    android:text="@string/copy_lightning_address"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
             </LinearLayout>
@@ -236,7 +236,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bitcoin (On-Chain)"
+                    android:text="@string/bitcoin_on_chain"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textStyle="bold" />
 
@@ -244,7 +244,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="bc1qjahmm3qtzpn9kc86j8uedejjuvtlp66z8w3wek"
+                    android:text="@string/bitcoin_address"
                     android:textAppearance="@style/TextAppearance.AppCompat.Small" />
 
                 <com.google.android.material.button.MaterialButton
@@ -254,30 +254,30 @@
                     android:layout_marginTop="8dp"
                     android:backgroundTint="#3F51B5"
                     android:textColor="#FFEB3B"
-                    android:text="Copiar Endereço Bitcoin"
+                    android:text="@string/copy_bitcoin_address"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Outras Opções -->
+        <!-- Other Options -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCompartilhar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="#3F51B5"
             android:textColor="#FFEB3B"
-            android:text="Compartilhar App"
+            android:text="@string/share_app"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
 
-        <!-- Créditos -->
+        <!-- Credits -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:gravity="center"
-            android:text="Desenvolvido com ❤️"
+            android:text="@string/developed_with_love"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="@color/black"
             android:textStyle="italic" />

@@ -8,7 +8,7 @@
     android:background="@color/gray_white"
     android:padding="16dp">
 
-    <!-- Barra superior com botão voltar, campo de título e botão salvar -->
+    <!-- Top bar with back button, title field and save button -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -21,7 +21,7 @@
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
-            android:text="Voltar"
+            android:text="@string/back_button"
             android:backgroundTint="#3F51B5"
             android:textColor="#FFEB3B"
             app:layout_constraintBottom_toTopOf="@+id/etNoteName"
@@ -38,7 +38,7 @@
             android:minWidth="100dp"
             android:backgroundTint="#3F51B5"
             android:textColor="#FFEB3B"
-            android:text="Salvar"
+            android:text="@string/save_button"
             app:layout_constraintBottom_toTopOf="@+id/etNoteName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -48,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Nome da nota"
+            android:hint="@string/note_name_hint"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -61,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:hint="Digite o conteúdo da sua nota aqui..."
+        android:hint="@string/note_content_hint"
         android:gravity="top"
         android:inputType="textMultiLine"
         android:padding="8dp" />

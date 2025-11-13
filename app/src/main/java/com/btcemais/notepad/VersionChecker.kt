@@ -30,8 +30,8 @@ object VersionChecker {
     private const val VERSION_URL = "https://pagebroke.netlify.app/json/all_apps_versions.json"
     private val json = Json { ignoreUnknownKeys = true; ignoreUnknownKeys = true }
     private const val TAG = "VersionChecker"
-    private const val CONNECTION_TIMEOUT = 10000 // 10 segundos
-    private const val READ_TIMEOUT = 10000 // 10 segundos
+    private const val CONNECTION_TIMEOUT = 10000 // 10 seconds
+    private const val READ_TIMEOUT = 10000 // 10 seconds
 
     private fun getCurrentVersionCode(context: Context): Int {
         return try {
@@ -53,12 +53,12 @@ object VersionChecker {
                 val url = URL(VERSION_URL)
                 val connection = url.openConnection() as HttpsURLConnection
 
-                // Configurar timeouts
+                // Configure timeouts
                 connection.connectTimeout = CONNECTION_TIMEOUT
                 connection.readTimeout = READ_TIMEOUT
                 connection.requestMethod = "GET"
 
-                // Adicionar headers para evitar cache
+                // Add headers to avoid cache
                 connection.setRequestProperty("Cache-Control", "no-cache")
                 connection.setRequestProperty("Pragma", "no-cache")
 

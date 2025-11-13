@@ -1,9 +1,6 @@
 package com.btcemais.notepad
 
 import android.app.Activity
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -24,11 +21,11 @@ class NotesFragment : Fragment() {
     private val notesList = mutableListOf<String>()
     private lateinit var adapter: NoteAdapter
 
-    // Variáveis para salvar externamente
+    // Variables for external save
     private var currentNoteTitleForSave: String? = null
     private var currentNoteContentForSave: String? = null
 
-    // Launcher para criar documento usando Storage Access Framework
+    // Launcher for creating document using Storage Access Framework
     private val createDocumentLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
@@ -37,9 +34,9 @@ class NotesFragment : Fragment() {
                 saveNoteToUri(uri)
             }
         } else {
-            Toast.makeText(requireContext(), "Salvamento cancelado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.save_cancelled, Toast.LENGTH_SHORT).show()
         }
-        // Limpa as variáveis temporárias
+        // Clear temporary variables
         currentNoteTitleForSave = null
         currentNoteContentForSave = null
     }
@@ -100,23 +97,23 @@ class NotesFragment : Fragment() {
 
     private fun showDeleteConfirmationDialog(noteTitle: String, position: Int) {
         AlertDialog.Builder(requireContext())
-            .setTitle("Excluir Nota")
-            .setMessage("Tem certeza que deseja excluir \"$noteTitle\"?")
-            .setPositiveButton("Excluir") { _, _ ->
+            .setTitle(R.string.delete_note)
+            .setMessage(getString(R.string.delete_confirmation, noteTitle))
+            .setPositiveButton(R.string.delete) { _, _ ->
                 deleteNote(noteTitle, position)
             }
-            .setNegativeButton("Cancelar", null)
+            .setNegativeButton(R.string.cancel, null)
             .show()
     }
 
     private fun showSaveExternalConfirmationDialog(noteTitle: String) {
         AlertDialog.Builder(requireContext())
-            .setTitle("Salvar no Dispositivo")
-            .setMessage("Deseja salvar \"$noteTitle\" na pasta de documentos do dispositivo?")
-            .setPositiveButton("Sim") { _, _ ->
+            .setTitle(R.string.save_to_device)
+            .setMessage(getString(R.string.save_to_device_confirmation, noteTitle))
+            .setPositiveButton(R.string.yes) { _, _ ->
                 prepareNoteForExternalSave(noteTitle)
             }
-            .setNegativeButton("Cancelar", null)
+            .setNegativeButton(R.string.cancel, null)
             .show()
     }
 
@@ -127,10 +124,10 @@ class NotesFragment : Fragment() {
                 file.delete()
                 notesList.removeAt(position)
                 adapter.notifyDataSetChanged()
-                Toast.makeText(requireContext(), "Nota excluída com sucesso", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.note_deleted_successfully, Toast.LENGTH_SHORT).show()
             }
         } catch (e: Exception) {
-            Toast.makeText(requireContext(), "Erro ao excluir nota", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.error_deleting_note, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -138,21 +135,21 @@ class NotesFragment : Fragment() {
         try {
             val internalFile = File(requireContext().filesDir, "$noteTitle.txt")
             if (!internalFile.exists()) {
-                Toast.makeText(requireContext(), "Nota não encontrada", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.note_not_found, Toast.LENGTH_SHORT).show()
                 return
             }
 
             val content = internalFile.readText()
 
-            // Armazena os dados temporariamente
+            // Temporarily store data
             currentNoteTitleForSave = noteTitle
             currentNoteContentForSave = content
 
-            // Abre o seletor de arquivos do sistema
+            // Open system file picker
             openFilePicker()
 
         } catch (e: Exception) {
-            Toast.makeText(requireContext(), "Erro ao preparar nota para salvamento: ${e.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.error_preparing_note, e.message), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -174,17 +171,17 @@ class NotesFragment : Fragment() {
 
                     Toast.makeText(
                         requireContext(),
-                        "Nota \"${currentNoteTitleForSave}\" salva com sucesso!",
+                        getString(R.string.note_saved_successfully),
                         Toast.LENGTH_LONG
                     ).show()
                 } ?: run {
-                    Toast.makeText(requireContext(), "Erro: Não foi possível acessar o local selecionado", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), R.string.error_accessing_location, Toast.LENGTH_SHORT).show()
                 }
             } ?: run {
-                Toast.makeText(requireContext(), "Erro: Conteúdo da nota não encontrado", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), R.string.error_note_content_not_found, Toast.LENGTH_SHORT).show()
             }
         } catch (e: Exception) {
-            Toast.makeText(requireContext(), "Erro ao salvar nota: ${e.message}", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), getString(R.string.error_saving_note, e.message), Toast.LENGTH_SHORT).show()
         }
     }
 

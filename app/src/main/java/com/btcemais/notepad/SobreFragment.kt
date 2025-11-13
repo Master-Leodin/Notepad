@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -17,7 +16,7 @@ import com.google.android.material.button.MaterialButton
 
 class SobreFragment : Fragment() {
 
-    // Referências para as views
+    // View references
     private lateinit var tvAppVersion: TextView
     private lateinit var tvAppDescription: TextView
     private lateinit var btnCopiarEmail: MaterialButton
@@ -27,7 +26,7 @@ class SobreFragment : Fragment() {
     private lateinit var btnDoacaoBitcoin: MaterialButton
     private lateinit var btnCompartilhar: MaterialButton
 
-    // Métodos de doação
+    // Donation methods
     private val paypalPixEmail = "leonardo132@gmail.com"
     private val wiseId = "leonardot1427"
     private val wiseLink = "https://wise.com/pay/me/leonardot1427"
@@ -38,14 +37,14 @@ class SobreFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Infla o layout diretamente sem View Binding
+        // Inflate layout directly without View Binding
         return inflater.inflate(R.layout.fragment_sobre, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Inicializa as views manualmente
+        // Initialize views manually
         initViews(view)
         setupClickListeners()
         setupAppInfo()
@@ -63,75 +62,72 @@ class SobreFragment : Fragment() {
     }
 
     private fun setupAppInfo() {
-        tvAppVersion.text = "Versão 1.0"
-        tvAppDescription.text = "Notepad - Seu aplicativo de bloco de notas simples"
+        tvAppVersion.text = getString(R.string.app_version)
+        tvAppDescription.text = getString(R.string.app_description)
     }
 
     private fun setupClickListeners() {
-        // Botão para copiar email (PayPal e PIX)
+        // Button to copy email (PayPal and PIX)
         btnCopiarEmail.setOnClickListener {
-            copiarParaAreaTransferencia(paypalPixEmail, "Email copiado para PayPal e PIX!")
+            copyToClipboard(paypalPixEmail, getString(R.string.email_copied))
         }
 
-        // Botão de doação via Wise
+        // Wise donation button
         btnDoacaoWise.setOnClickListener {
-            abrirLinkExterno(wiseLink)
+            openExternalLink(wiseLink)
         }
 
-        // Botão para copiar ID Wise
+        // Button to copy Wise ID
         btnCopiarWise.setOnClickListener {
-            copiarParaAreaTransferencia(wiseId, "ID Wise copiado!")
+            copyToClipboard(wiseId, getString(R.string.wise_id_copied))
         }
 
-        // Botão de doação via Lightning
+        // Lightning donation button
         btnDoacaoLightning.setOnClickListener {
-            copiarParaAreaTransferencia(lightningAddress, "Endereço Lightning copiado!")
+            copyToClipboard(lightningAddress, getString(R.string.lightning_address_copied))
         }
 
-        // Botão de doação via Bitcoin (On Chain)
+        // Bitcoin donation button (On Chain)
         btnDoacaoBitcoin.setOnClickListener {
-            copiarParaAreaTransferencia(bitcoinAddress, "Endereço Bitcoin copiado!")
+            copyToClipboard(bitcoinAddress, getString(R.string.bitcoin_address_copied))
         }
 
-        // Botão de compartilhar app
+        // Share app button
         btnCompartilhar.setOnClickListener {
-            compartilharApp()
+            shareApp()
         }
     }
 
-    private fun abrirLinkExterno(url: String) {
+    private fun openExternalLink(url: String) {
         try {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
             startActivity(intent)
         } catch (e: Exception) {
-            Toast.makeText(requireContext(), "Não foi possível abrir o link", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.could_not_open_link, Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun copiarParaAreaTransferencia(texto: String, mensagemSucesso: String) {
+    private fun copyToClipboard(text: String, successMessage: String) {
         try {
             val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-            val clip = ClipData.newPlainText("Doação", texto)
+            val clip = ClipData.newPlainText("Donation", text)
             clipboard.setPrimaryClip(clip)
 
-            Toast.makeText(requireContext(), mensagemSucesso, Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), successMessage, Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
-            Toast.makeText(requireContext(), "Erro ao copiar", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.copy_error, Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun compartilharApp() {
+    private fun shareApp() {
         try {
             val shareIntent = Intent(Intent.ACTION_SEND)
             shareIntent.type = "text/plain"
-            shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Notepad - App de Bloco de Notas")
-            shareIntent.putExtra(
-                Intent.EXTRA_TEXT,
-                "Baixe o Notepad - App de bloco de notas simples na página: https://leonportfolio.netlify.app/projects"
-            )
-            startActivity(Intent.createChooser(shareIntent, "Compartilhar app"))
+            shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.app_name))
+            shareIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_app_text))
+            startActivity(Intent.createChooser(shareIntent, getString(R.string.share_app)))
         } catch (e: Exception) {
-            Toast.makeText(requireContext(), "Erro ao compartilhar", Toast.LENGTH_SHORT).show()
+            Toast.makeText(requireContext(), R.string.share_error, Toast.LENGTH_SHORT).show()
         }
     }
 }

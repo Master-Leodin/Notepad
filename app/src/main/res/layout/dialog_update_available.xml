@@ -13,14 +13,14 @@
         android:layout_height="64dp"
         android:layout_gravity="center"
         android:src="@mipmap/ic_launcher_round"
-        android:contentDescription="Ícone do App" />
+        android:contentDescription="App Icon" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:text="Nova Versão Disponível!"
+        android:text="@string/new_version_available"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
         android:textColor="#3F51B5"
         android:textStyle="bold" />
@@ -33,7 +33,7 @@
         android:gravity="center"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
         android:textColor="@color/black"
-        tools:text="Release notes da nova versão aparecerão aqui." />
+        tools:text="@string/release_notes_placeholder" />
 
     <ProgressBar
         android:id="@+id/updateProgressBar"
@@ -59,7 +59,7 @@
             android:layout_weight="1"
             android:backgroundTint="#3F51B5"
             android:textColor="#FFEB3B"
-            android:text="Agora não" />
+            android:text="@string/later_button" />
 
         <Button
             android:id="@+id/updateButton"
@@ -69,7 +69,7 @@
             android:layout_weight="1"
             android:backgroundTint="#3F51B5"
             android:textColor="#FFEB3B"
-            android:text="Atualizar" />
+            android:text="@string/update_button" />
 
     </LinearLayout>
 
