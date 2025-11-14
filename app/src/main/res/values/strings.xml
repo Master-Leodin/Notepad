@@ -67,7 +67,7 @@
     <string name="copy_bitcoin_address">Copy Bitcoin Address</string>
     <string name="bitcoin_address_copied">Bitcoin address copied!</string>
     <string name="share_app">Share App</string>
-    <string name="share_app_text">Download Notepad - Simple notepad app at: https://leonportfolio.netlify.app/projects</string>
+    <string name="share_app_text">Download Notepad - Simple notepad app at: https://leonportfolio.netlify.app</string>
     <string name="developed_with_love">Developed with ❤️</string>
     <string name="could_not_open_link">Could not open link</string>
     <string name="copy_error">Copy error</string>
