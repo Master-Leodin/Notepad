@@ -74,5 +74,7 @@
     <string name="share_error">Error al compartir</string>
     <string name="save_external_description">Guardar en dispositivo</string>
     <string name="delete_note_description">Eliminar nota</string>
+    <string name="move_note_description">Mover nota</string>
+    <string name="notes_order_updated">Orden de notas actualizado</string>
 
 </resources>

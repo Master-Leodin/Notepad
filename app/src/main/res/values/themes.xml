@@ -5,5 +5,10 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="DragShadow">
+        <item name="android:background">@color/design_dark_default_color_on_background</item>
+        <item name="android:alpha">0.7</item>
+    </style>
+
     <style name="Theme.Notepad" parent="Base.Theme.Notepad" />
 </resources>

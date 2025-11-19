@@ -74,5 +74,7 @@
     <string name="share_error">Share error</string>
     <string name="save_external_description">Save to device</string>
     <string name="delete_note_description">Delete note</string>
+    <string name="move_note_description">Move note</string>
+    <string name="notes_order_updated">Notes order updated</string>
 
 </resources>

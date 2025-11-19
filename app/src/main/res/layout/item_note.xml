@@ -8,6 +8,8 @@
     android:background="@color/gray_white"
     android:descendantFocusability="blocksDescendants">
 
+    <!-- Ícone de mover para rearrangar -->
+
     <TextView
         android:id="@+id/tvNoteTitle"
         android:layout_width="0dp"
@@ -17,6 +19,18 @@
         android:textStyle="bold"
         android:focusable="false"
         android:clickable="false" />
+
+    <ImageButton
+        android:id="@+id/btnMove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:contentDescription="@string/move_note_description"
+        android:focusable="true"
+        android:padding="8dp"
+        android:src="@drawable/ic_move" />
 
     <ImageButton
         android:id="@+id/btnSaveExternal"
